@@ -9,8 +9,8 @@ describe('Thermostat', function(){
 
   describe('initialization, ', function (){
 
-    it('temperature starts at 20 degrees', function(){
-      expect(thermostat.temperature()).toEqual(20);
+    it('getCurrentTemperature starts at 20 degrees', function(){
+      expect(thermostat.getCurrentTemperature()).toEqual(20);
     });
 
     it('powersaving mode is ON', function(){
@@ -20,13 +20,13 @@ describe('Thermostat', function(){
 
   describe('temperature changes, ',function(){
     it('temperature can be increased', function(){
-      thermostat.increaseTemperature();
-      expect(thermostat.temperature()).toEqual(21);
+      thermostat.up();
+      expect(thermostat.getCurrentTemperature()).toEqual(21);
     });
 
     it('temperature can be decreased', function(){
-      thermostat.decreaseTemperature();
-      expect(thermostat.temperature()).toEqual(19);
+      thermostat.down();
+      expect(thermostat.getCurrentTemperature()).toEqual(19);
     });
   });
 
@@ -41,42 +41,50 @@ describe('Thermostat', function(){
       thermostat.switchPowerSaving();
       expect(thermostat.powerSaving()).toBe(true);
     });
+  });
 
-    it('if ON, MAX_TEMP is 25', function(){
-      expect(thermostat._MAXIMUM.toBe(true);;
+  describe('minimum temperature is ', function(){
+    beforeEach(function(){
+      while(thermostat.getCurrentTemperature() > 10) {
+        thermostat.down();
+      }
+    });
+
+    it('10 degrees', function(){
+      thermostat.down()
+      expect(thermostat.getCurrentTemperature()).toEqual(10);
     });
   });
 
-  // describe('minimum temperature is ', function(){
-  //   beforeEach(function(){
-  //     while(thermostat.temperature() > 10) {
-  //       thermostat.decreaseTemperature();
-  //     }
-  //   });
-
-  //   it('10 degrees', function(){
-  //     thermostat.decreaseTemperature()
-  //     expect(thermostat.temperature()).toEqual(10);
-  //   });
-  // });
-
-  // describe('maximum temperature is ', function(){
-  //   it('25 degrees with power saving ON', function(){
-  //     while(thermostat.temperature() < 25) {
-  //       thermostat.increaseTemperature();
-  //     }
-  //     thermostat.increaseTemperature()
-  //     expect(thermostat.temperature()).toEqual(25);
-  //   });
+  describe('maximum getCurrentTemperature is ', function(){
+    it('25 degrees with power saving ON', function(){
+      while(thermostat.getCurrentTemperature() < 25) {
+        thermostat.up();
+      }
+      thermostat.up()
+      expect(thermostat.getCurrentTemperature()).toEqual(25);
+    });
 
 
-  //   xit('32 degrees with power saving OFF', function(){
-  //     while(thermostat.temperature() < 32) {
-  //       thermostat.increaseTemperature();
-  //     }
-  //     thermostat.increaseTemperature()
-  //     expect(thermostat.temperature()).toEqual(32);
-  //   });
-  // });
+    xit('32 degrees with power saving OFF', function(){
+      while(thermostat.getCurrentTemperature() < 32) {
+        thermostat.up();
+      }
+      thermostat.up()
+      expect(thermostat.getCurrentTemperature()).toEqual(32);
+    });
+  });
+
+describe('when reset, ', function(){
+    it('getCurrentTemperature is back to 20', function(){
+      expect(thermostat.reset()).toEqual(20);
+    });
+
+    it('powersaving is ON', function(){
+      expect(thermostat.powerSaving()).toBe(true);
+    });
 });
 
+
+
+});
