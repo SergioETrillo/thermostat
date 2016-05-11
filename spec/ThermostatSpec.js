@@ -30,29 +30,53 @@ describe('Thermostat', function(){
     });
   });
 
-  describe('minimum temperature is ', function(){
-    beforeEach(function(){
-      while(thermostat.temperature() > 10) {
-        thermostat.decreaseTemperature();
-      }
+  describe('Power Saving mode, ',function(){
+    it('if ON, can be switched to OFF', function(){
+      thermostat.switchPowerSaving();
+      expect(thermostat.powerSaving()).toBe(false);
     });
 
-    it('10 degrees', function(){
-      thermostat.decreaseTemperature()
-      expect(thermostat.temperature()).toEqual(10);
+    it('if OFF, can be switched to ON', function(){
+      thermostat.switchPowerSaving();
+      thermostat.switchPowerSaving();
+      expect(thermostat.powerSaving()).toBe(true);
     });
-  });
 
-  describe('maximum temperature is ', function(){
-    it('25 degrees with power saving on', function(){
-      while(thermostat.temperature() < 25) {
-        thermostat.increaseTemperature();
-      }
-      thermostat.increaseTemperature()
-      expect(thermostat.temperature()).toEqual(25);
+    it('if ON, MAX_TEMP is 25', function(){
+      expect(thermostat._MAXIMUM.toBe(true);;
     });
   });
 
+  // describe('minimum temperature is ', function(){
+  //   beforeEach(function(){
+  //     while(thermostat.temperature() > 10) {
+  //       thermostat.decreaseTemperature();
+  //     }
+  //   });
 
+  //   it('10 degrees', function(){
+  //     thermostat.decreaseTemperature()
+  //     expect(thermostat.temperature()).toEqual(10);
+  //   });
+  // });
+
+  // describe('maximum temperature is ', function(){
+  //   it('25 degrees with power saving ON', function(){
+  //     while(thermostat.temperature() < 25) {
+  //       thermostat.increaseTemperature();
+  //     }
+  //     thermostat.increaseTemperature()
+  //     expect(thermostat.temperature()).toEqual(25);
+  //   });
+
+
+  //   xit('32 degrees with power saving OFF', function(){
+  //     while(thermostat.temperature() < 32) {
+  //       thermostat.increaseTemperature();
+  //     }
+  //     thermostat.increaseTemperature()
+  //     expect(thermostat.temperature()).toEqual(32);
+  //   });
+  // });
 });
 
