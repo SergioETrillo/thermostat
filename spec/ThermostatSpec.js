@@ -14,7 +14,7 @@ describe('Thermostat', function(){
     });
 
     it('powersaving mode is ON', function(){
-      expect(thermostat.powerSaving()).toBe(true);
+      expect(thermostat.isPowerSavingModeOn()).toBe(true);
     });
   });
 
@@ -33,13 +33,20 @@ describe('Thermostat', function(){
   describe('Power Saving mode, ',function(){
     it('if ON, can be switched to OFF', function(){
       thermostat.switchPowerSaving();
-      expect(thermostat.powerSaving()).toBe(false);
+      expect(thermostat.isPowerSavingModeOn()).toBe(false);
     });
 
     it('if OFF, can be switched to ON', function(){
       thermostat.switchPowerSaving();
       thermostat.switchPowerSaving();
-      expect(thermostat.powerSaving()).toBe(true);
+      expect(thermostat.isPowerSavingModeOn()).toBe(true);
+    });
+
+    it('can switch PSM off, directly', function(){
+      thermostat.switchPowerSavingModeOff();
+      expect(thermostat.isPowerSavingModeOn()).toBe(false);
+      thermostat.switchPowerSavingModeOn();
+      expect(thermostat.isPowerSavingModeOn()).toBe(true);
     });
   });
 
@@ -66,8 +73,9 @@ describe('Thermostat', function(){
     });
 
 
-    xit('32 degrees with power saving OFF', function(){
-      while(thermostat.getCurrentTemperature() < 32) {
+    it('32 degrees with power saving OFF', function(){
+      thermostat.switchPowerSavingModeOff();
+      for (var i=0; i<32; i++) {
         thermostat.up();
       }
       thermostat.up()
@@ -81,7 +89,30 @@ describe('when reset, ', function(){
     });
 
     it('powersaving is ON', function(){
-      expect(thermostat.powerSaving()).toBe(true);
+      expect(thermostat.isPowerSavingModeOn()).toBe(true);
+    });
+});
+
+describe('power usage is:  ', function(){
+    it('low when Temp < 18', function(){
+      for(var i=0; i <3; i++) {
+        thermostat.down();
+      }
+      expect(thermostat.energyUsage()).toBe('low-usage');
+    });
+
+    it('medium when 18 <= Temp < 25', function(){
+      for(var i=0; i < 4; i++) {
+        thermostat.up();
+      }
+      expect(thermostat.energyUsage()).toBe('medium-usage');
+    });
+
+    it('high when Temp >= 25', function(){
+      for(var i=0; i < 10; i++) {
+        thermostat.up();
+      }
+      expect(thermostat.energyUsage()).toBe('high-usage');
     });
 });
 
