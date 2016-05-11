@@ -52,7 +52,7 @@ Thermostat.prototype.down = function () {
 };
 
 Thermostat.prototype.reset = function() {
-  return this.temp = this._DEFAULT_TEMP;
+  return this._temp = this._DEFAULT_TEMP;
 };
 
 Thermostat.prototype.energyUsage = function() {
