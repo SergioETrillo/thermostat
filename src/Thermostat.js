@@ -44,11 +44,11 @@ Thermostat.prototype.switchPowerSaving = function() {
 };
 
 Thermostat.prototype.up = function () {
-  if (this._temp < this._maximum_temp) { return this._temp++; }
+  if (this._temp < this._maximum_temp) { return ++this._temp; }
 };
 
 Thermostat.prototype.down = function () {
-  if (this._temp > this._MINIMUM_TEMP) { return this._temp--; }
+  if (this._temp > this._MINIMUM_TEMP) { return --this._temp; }
 };
 
 Thermostat.prototype.reset = function() {
