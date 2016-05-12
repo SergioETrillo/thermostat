@@ -28,8 +28,11 @@ $(document).ready(function(){
     $('#power-saving-status').text("off");
   });
 
+
+
 function updateTemp() {
   $('#temperature').text(t.getCurrentTemperature());
+  $('#temperature').attr("class", t.energyUsage())
 };
 
 });
