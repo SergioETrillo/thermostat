@@ -59,6 +59,7 @@ Thermostat.prototype.down = function () {
 };
 
 Thermostat.prototype.reset = function() {
+  this.switchPowerSavingModeOn()
   return this._temp = this._DEFAULT_TEMP;
 };
 

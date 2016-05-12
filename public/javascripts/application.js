@@ -32,7 +32,7 @@ $(document).ready(function(){
 
 function updateTemp() {
   $('#temperature').text(t.getCurrentTemperature());
-  $('#temperature').attr("class", t.energyUsage())
+  $('#temperature').attr("class", t.energyUsage());
 };
 
 });

@@ -91,6 +91,12 @@ describe('when reset, ', function(){
     it('powersaving is ON', function(){
       expect(thermostat.isPowerSavingModeOn()).toBe(true);
     });
+
+    it('power saving OFF, then reset, power saving is on', function(){
+      thermostat.switchPowerSavingModeOff();
+      thermostat.reset();
+      expect(thermostat.isPowerSavingModeOn()).toBe(true);
+    });
 });
 
 describe('power usage is:  ', function(){

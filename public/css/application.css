@@ -1,11 +1,20 @@
+#temperature {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 50px;
+}
+
 .low-usage {
     color: #4CAF50 ;
 }
 
 .medium-usage {
-    color: #EAEA2A ;
+    color: orange;
 }
 
 .high-usage {
     color: #DE4343 ;
+}
+
+#current_temp {
+  color: green;
 }

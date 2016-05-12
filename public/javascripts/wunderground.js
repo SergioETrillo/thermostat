@@ -3,8 +3,7 @@ $(document).ready(function(){
 
   function displayWeather(country, city){
     var url = "http://api.wunderground.com/api/5207e24ed23730f6/conditions/q/" + country+ "/"+ city +".json";
-    var api_response;
-    var temp, city;
+    var api_response, temp, city;
     api_response = $.getJSON(url, function(data){
       api_response = data;
       temp = api_response.current_observation.temp_c;
