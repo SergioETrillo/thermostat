@@ -32,6 +32,9 @@ Thermostat.prototype.switchPowerSavingModeOff = function() {
 Thermostat.prototype.switchPowerSavingModeOn = function() {
   this._maximum_temp = this._LIMIT_TEMP_SAVING_ON;
   this._powermode = true;
+  if (this._temp > this._LIMIT_TEMP_SAVING_ON) {
+    this._temp = this._LIMIT_TEMP_SAVING_ON;
+  }
 };
 
 Thermostat.prototype.switchPowerSaving = function() {
@@ -39,6 +42,10 @@ Thermostat.prototype.switchPowerSaving = function() {
     this._maximum_temp = this._LIMIT_TEMP_SAVING_OFF;
   } else {
     this._maximum_temp = this._LIMIT_TEMP_SAVING_ON;
+  }
+
+  if (this._powermode && this._temp > this._LIMIT_TEMP_SAVING_ON) {
+    this._temp = this._LIMIT_TEMP_SAVING_ON;
   }
   return this._powermode = !this._powermode;
 };
