@@ -5,12 +5,14 @@
     <link href="public/css/application.css" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     <script src="public/javascripts/application.js"></script>
+    <script src="public/javascripts/wunderground.js"></script>
     <script src="src/Thermostat.js"></script>
   </head>
   <body>
 
     <section>
       <h1 id="temperature"> Temperature </h1>
+      <h3 id="current_temp"> </h3>
       <p>
         <button id="temperature-up">+</button>
         <button id="temperature-down">-</button>
@@ -20,15 +22,12 @@
         <button id="powersaving-off">PSM off</button>
       </p>
     </section>
-<!--     <script src="jquery-1.12.3.js"></script> -->
 
-<!--     <script>
-      $( document ).ready(function() {
-        alert( "hello, bugmaker!")
-      });
-
-
-    -->
+    <form id="select-location">
+      <input id="current-country" type="text" placeholder="Enter a country"></input>
+      <input id="current-city" type="text" placeholder="Enter a city"></input>
+      <input type="submit"></input>
+    </form>
 
   </body>
 </html>
