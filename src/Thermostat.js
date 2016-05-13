@@ -24,30 +24,31 @@ Thermostat.prototype.isPowerSavingModeOn = function() {
   return this._powermode;
 };
 
-Thermostat.prototype.switchPowerSavingModeOff = function() {
-  this._powermode = false;
-  this._maximum_temp = this._LIMIT_TEMP_SAVING_OFF;
-};
+// Thermostat.prototype.switchPowerSavingModeOff = function() {
+//   this._powermode = false;
+//   this._maximum_temp = this._LIMIT_TEMP_SAVING_OFF;
+// };
 
-Thermostat.prototype.switchPowerSavingModeOn = function() {
-  this._maximum_temp = this._LIMIT_TEMP_SAVING_ON;
-  this._powermode = true;
-  if (this._temp > this._LIMIT_TEMP_SAVING_ON) {
-    this._temp = this._LIMIT_TEMP_SAVING_ON;
-  }
-};
+// Thermostat.prototype.switchPowerSavingModeOn = function() {
+//   this._maximum_temp = this._LIMIT_TEMP_SAVING_ON;
+//   this._powermode = true;
+//   if (this._temp > this._LIMIT_TEMP_SAVING_ON) {
+//     this._temp = this._LIMIT_TEMP_SAVING_ON;
+//   }
+// };
 
 Thermostat.prototype.switchPowerSaving = function() {
+  this._powermode = !this._powermode;
   if (this._powermode){
-    this._maximum_temp = this._LIMIT_TEMP_SAVING_OFF;
-  } else {
     this._maximum_temp = this._LIMIT_TEMP_SAVING_ON;
+  } else {
+    this._maximum_temp = this._LIMIT_TEMP_SAVING_OFF;
   }
 
   if (this._powermode && this._temp > this._LIMIT_TEMP_SAVING_ON) {
     this._temp = this._LIMIT_TEMP_SAVING_ON;
   }
-  return this._powermode = !this._powermode;
+  return this._powermode;
 };
 
 Thermostat.prototype.up = function () {
