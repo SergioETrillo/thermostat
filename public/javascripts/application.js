@@ -21,7 +21,6 @@ $(document).ready(function(){
   $("#PSM").click(function(){
     thermostat.switchPowerSaving();
     updateTemp();
-    // $("#temperature").html(formatTemperature(thermostat));
     updatePSM();
   });
 
