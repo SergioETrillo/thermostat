@@ -8,7 +8,7 @@ $(document).ready(function(){
       api_response = data;
       temp = api_response.current_observation.temp_c;
       city = api_response.current_observation.display_location.city;
-      $("#current_temp").text("Current temp in " + city + " is: "+ temp);
+      $("#current-temperature").text("Current temp in " + city + " is: "+ temp);
     });
   }
 

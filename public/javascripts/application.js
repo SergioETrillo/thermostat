@@ -1,19 +1,32 @@
 $(document).ready(function(){
   var t = new Thermostat();
   updateTemp();
-  $('#temperature-up').click(function(){
+  $('#up').click(function(){
     t.up();
     updateTemp();
   });
 
-  $('#temperature-down').click(function(){
+  $('#down').click(function(){
     t.down();
     updateTemp();
   });
 
-  $('#temperature-reset').click(function(){
+  $('#reset').click(function(){
     t.reset();
     updateTemp();
+  });
+
+  $("#PSM").click(function(){
+    t.switchPowerSaving();
+    updateTemp();
+    $("#temperature").html(formatTemperature(t));
+    if($(this).attr("src") == "public/images/psm_off.png"){
+      $(this).attr("src", "public/images/psm_on.png");
+      $("#power-saving-status").text("ON");
+    } else {
+      $(this).attr("src", "public/images/psm_off.png");
+      $("#power-saving-status").text("OFF");
+    }
   });
 
   $('#powersaving-on').click(function(){
@@ -28,11 +41,16 @@ $(document).ready(function(){
     $('#power-saving-status').text("off");
   });
 
+  function formatTemperature(){
+    var txt = "";
+    txt += "<h1>" + t.getCurrentTemperature() + " &#8451;</h1>";
+    return txt;
+  }
 
-
-function updateTemp() {
-  $('#temperature').text(t.getCurrentTemperature());
-  $('#temperature').attr("class", t.energyUsage());
-};
+  function updateTemp() {
+    $('#temperature').text(t.getCurrentTemperature());
+    $('#temperature').attr("class", t.energyUsage());
+    $("#temperature").html(formatTemperature(t));
+  };
 
 });
